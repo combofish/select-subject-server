@@ -7,15 +7,15 @@ import com.select.bean.CourseRecord
 
 class CourseRecordServiceImpl : CourseRecordService {
     private val courseRecordDAO: CourseRecordDAO = CourseRecordDAOImpl()
-    override fun saveCourseRecord(courseRecord: CourseRecord?): Int? {
-        return null
+    override fun saveCourseRecord(courseRecord: CourseRecord): Int {
+        return 1
     }
 
-    override fun getCourseRecordByStudentId(studentId: Int?): List<CourseRecord?>? {
-        return courseRecordDAO.queryCourseRecordByAccountId(studentId!!)
+    override fun getCourseRecordByStudentId(studentId: Int): List<CourseRecord?>? {
+        return courseRecordDAO.queryCourseRecordByAccountId(studentId)
     }
 
-    override fun getCourseRecordByTeacherId(teacherId: Int?): List<CourseRecord?>? {
-        return courseRecordDAO.queryCourseRecordByAccountId(teacherId!!)
+    override fun getCourseRecordByTeacherId(teacherId: Int): List<CourseRecord?>? {
+        return courseRecordDAO.queryCourseRecordByAccountId(teacherId)
     }
 }

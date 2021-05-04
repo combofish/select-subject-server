@@ -10,7 +10,7 @@ class DepartmentDAOImpl : BaseDao(), DepartmentDAO {
         return update(sql, department.name)
     }
 
-    override fun queryDepartmentById(id: Int): Department {
+    override fun queryDepartmentById(id: Int): Department? {
         val sql = "select id,name from department where id = ?"
         return queryForOne(Department::class.java, sql, id)
     }

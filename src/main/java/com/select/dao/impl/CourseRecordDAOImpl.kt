@@ -5,7 +5,7 @@ import com.select.dao.CourseRecordDAO
 import com.select.bean.CourseRecord
 
 class CourseRecordDAOImpl : BaseDao(), CourseRecordDAO {
-    override fun queryCourseRecordByCourseId(courseId: Int): List<CourseRecord> {
+    override fun queryCourseRecordByCourseId(courseId: Int): List<CourseRecord?>? {
         val sql = "select id,course_id,account_id from course_record where course_id = ?"
         return queryForList(CourseRecord::class.java, sql, courseId)
     }
@@ -15,7 +15,7 @@ class CourseRecordDAOImpl : BaseDao(), CourseRecordDAO {
         return update(sql, course_record.course_id, course_record.account_id)
     }
 
-    override fun queryCourseRecordByAccountId(accountId: Int): List<CourseRecord> {
+    override fun queryCourseRecordByAccountId(accountId: Int): List<CourseRecord?>? {
         val sql = "select id,course_id,account_id from course_record where account_id = ?"
         return queryForList(CourseRecord::class.java, sql, accountId)
     }
@@ -24,4 +24,5 @@ class CourseRecordDAOImpl : BaseDao(), CourseRecordDAO {
         val sql = "delete from course_record where id = ?"
         return update(sql, id)
     }
+
 }

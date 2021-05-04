@@ -5,12 +5,13 @@ import com.select.dao.AccountDAO
 import com.select.bean.Account
 
 class AccountDAOImpl : BaseDao(), AccountDAO {
-    override fun queryAccountByPassport(passport: String): Account {
+
+    override fun queryAccountByPassport(passport: String): Account? {
         val sql = "select `id`,`passport`,`password` from account where passport = ?"
         return queryForOne(Account::class.java, sql, passport)
     }
 
-    override fun queryAccountByPassportAndPassword(passport: String, password: String): Account {
+    override fun queryAccountByPassportAndPassword(passport: String?, password: String?): Account? {
         val sql =
             "select passport,name,password,department_id,major_id from account where passport = ? and password = ?"
         return queryForOne(Account::class.java, sql, passport, password)

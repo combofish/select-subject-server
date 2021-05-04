@@ -10,7 +10,7 @@ class MajorDAOImpl : BaseDao(), MajorDAO {
         return update(sql, major.name, major.department_id)
     }
 
-    override fun queryMajorById(id: Int): Major {
+    override fun queryMajorById(id: Int): Major? {
         val sql = "select id,name,department_id from major where id = ?"
         return queryForOne(Major::class.java, sql, id)
     }

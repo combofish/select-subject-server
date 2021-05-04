@@ -5,6 +5,7 @@ import com.select.dao.CourseDAO
 import com.select.bean.Course
 
 class CourseDAOImpl : BaseDao(), CourseDAO {
+
     override fun saveCourse(course: Course): Int {
         val sql =
             "insert into course(name,credit,class_time,teach_time,classroom,account_id,department_id,major_id,type,require_type,available_amount) values(?,?,?,?,?,?,?,?,?,?,?)"
@@ -15,13 +16,13 @@ class CourseDAOImpl : BaseDao(), CourseDAO {
         )
     }
 
-    override fun queryCourseByCourseName(courseName: String): List<Course> {
+    override fun queryCourseByCourseName(courseName: String): List<Course?>? {
         val sql =
             "select id,name,credit,class_time,teach_time,classroom,account_id,department_id,major_id,type,require_type,available_amount from course where name = ?"
         return queryForList(Course::class.java, sql, courseName)
     }
 
-    override fun queryCourseByAccountId(accountId: Int): List<Course> {
+    override fun queryCourseByAccountId(accountId: Int): List<Course?>? {
         val sql =
             "select id,name,credit,class_time,teach_time,classroom,account_id,department_id,major_id,type,require_type,available_amount from course where account_id = ?"
         return queryForList(Course::class.java, sql, accountId)
@@ -32,21 +33,22 @@ class CourseDAOImpl : BaseDao(), CourseDAO {
         return update(sql, id)
     }
 
-    override fun queryCourseByCourseId(courseId: Int): Course {
+    override fun queryCourseByCourseId(courseId: Int): Course? {
         val sql =
             "select id,name,credit,class_time,teach_time,classroom,account_id,department_id,major_id,type,require_type,available_amount from course where id = ?"
         return queryForOne(Course::class.java, sql, courseId)
     }
 
-    override fun queryAllCourses(): List<Course> {
+    override fun queryAllCourses(): List<Course?>? {
         val sql =
             "select id,name,credit,class_time,teach_time,classroom,account_id,department_id,major_id,type,require_type,available_amount from course"
         return queryForList(Course::class.java, sql)
     }
 
-    override fun queryAllAvailableCourses(): List<Course> {
+    override fun queryAllAvailableCourses(): List<Course?>? {
         val sql =
             "select id,name,credit,class_time,teach_time,classroom,account_id,department_id,major_id,type,require_type,available_amount from course where available_amount > 0"
         return queryForList(Course::class.java, sql)
     }
+
 }
