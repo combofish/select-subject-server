@@ -1,5 +1,6 @@
 package com.select.web
 
+import com.combofish.selectsubject.bean.ResultMessage
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
 import com.select.service.AccountService
@@ -10,7 +11,6 @@ import javax.servlet.ServletException
 import java.io.IOException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
-import java.io.PrintWriter
 import com.select.bean.Account
 
 @WebServlet(name = "LoginServlet", value = ["/LoginServlet"])
@@ -27,15 +27,22 @@ class LoginServlet : HttpServlet() {
         val account = Account()
         account.passport = passport
         account.password = password
-        val account_login = accountService.AccountLogin(account)
-        val json = gson.toJson(account_login)
+        val account_login = accountService.accountLogin(account)
+        var resultMessage = ResultMessage()
+
+        //val json = gson.toJson(account_login)
         if (account_login != null) {
             println("Login Success")
-            writer.write(json)
+            resultMessage.flag = 1
+            resultMessage.msg = account_login?.id.toString()
         } else {
             println("Login Fail")
-            writer.write("-1")
+            resultMessage.flag = 0
+            resultMessage.msg = "Login fail"
         }
+
+        writer.write(gson.toJson(resultMessage))
+        println("ResultMessage: ${resultMessage.toString()}")
         writer.flush()
     }
 }
