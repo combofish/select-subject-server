@@ -3,6 +3,7 @@ package com.select.dao
 import com.select.bean.Course
 
 interface CourseDAO {
+    fun updateCourseAvailableAmount(course: Course): Int
     fun saveCourse(course: Course): Int
     fun queryCourseByCourseId(courseId: Int): Course?
     fun queryCourseByCourseName(CourseName: String): List<Course?>?

@@ -6,6 +6,11 @@ import com.select.bean.Course
 
 class CourseDAOImpl : BaseDao(), CourseDAO {
 
+    override fun updateCourseAvailableAmount(course: Course): Int {
+        val sql = "update course set available_amount=? where id=?"
+        return update(sql, course.available_amount, course.id)
+    }
+
     override fun saveCourse(course: Course): Int {
         val sql =
             "insert into course(name,credit,class_time,teach_time,classroom,account_id,department_id,major_id,type,require_type,available_amount) values(?,?,?,?,?,?,?,?,?,?,?)"

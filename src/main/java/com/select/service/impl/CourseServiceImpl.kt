@@ -11,6 +11,42 @@ class CourseServiceImpl : CourseService {
         return courseDAO.saveCourse(course)
     }
 
+    override fun isCourseAvailable(courseId: Int): Boolean {
+        return courseDAO.queryCourseByCourseId(courseId)!!.available_amount >= 1
+    }
+
+    override fun afterCancelSelectedUpdateCourseAvailableNumber(courseId: Int): Boolean {
+        if (!isCourseAvailable(courseId)) return false
+        val course = courseDAO.queryCourseByCourseId(courseId)
+        println("In afterCancelSelectedUpdateCourseAvailableNumber : ${course}")
+
+        course!!.available_amount += 1
+        return if (course != null) {
+            //courseDAO.saveCourse(course) == 1
+            courseDAO.updateCourseAvailableAmount(course) == 1
+        } else {
+            false
+        }
+    }
+
+    override fun getCoursesByAccountId(accountId: Int): List<Course?>? {
+        return courseDAO.queryCourseByAccountId(accountId)
+    }
+
+    override fun afterSelectedUpdateCourseAvailableNumber(courseId: Int): Boolean {
+        if (!isCourseAvailable(courseId)) return false
+        val course = courseDAO.queryCourseByCourseId(courseId)
+        println("In afterSelectedUpdateCourseAvailableNumber : ${course}")
+
+        course!!.available_amount -= 1
+        return if (course != null) {
+            //courseDAO.saveCourse(course) == 1
+            courseDAO.updateCourseAvailableAmount(course) == 1
+        } else {
+            false
+        }
+    }
+
     override fun updateCourse(course: Course): Int {
         return 1
     }
