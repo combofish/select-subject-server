@@ -1,6 +1,6 @@
 package com.select.bean
 
-class CourseRecord (
+data class CourseRecord (
     var id: Int=0,
     var course_id: Int=0,
     var account_id: Int=0,

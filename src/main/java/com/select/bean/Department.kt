@@ -1,6 +1,6 @@
 package com.select.bean
 
-class Department (
+data class Department (
     var id: Int=0,
     var name: String="",
     var introduction: String="",
