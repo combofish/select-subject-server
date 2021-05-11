@@ -17,11 +17,19 @@ class AccountServiceImpl : AccountService {
         return accountDAO.saveAccount(account)
     }
 
-    override fun AccountLogin(account: Account): Account? {
+    override fun accountLogin(account: Account): Account? {
         return accountDAO.queryAccountByPassportAndPassword(account!!.passport, account.password)
+    }
+
+    override fun queryAccountById(id: Int): Account? {
+        return accountDAO.queryAccountById(id)
     }
 
     override fun existAccountPassport(passport: String): Boolean {
         return accountDAO.queryAccountByPassport(passport) != null
+    }
+
+    override fun changePasswordByAccountId(password: String, accountId: Int): Int {
+        return accountDAO.changePasswordByAccountId(password,accountId)
     }
 }

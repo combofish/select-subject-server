@@ -2,7 +2,6 @@ package com.select.service.impl
 
 import junit.framework.TestCase
 import com.select.service.AccountService
-import com.select.service.impl.AccountServiceImpl
 import com.select.bean.Account
 
 class AccountServiceImplTest : TestCase() {
@@ -39,7 +38,7 @@ class AccountServiceImplTest : TestCase() {
         val account = Account()
         account.password = "123456"
         account.passport = "172071"
-        val account1 = accountService.AccountLogin(account)
+        val account1 = accountService.accountLogin(account)
         println(account1 == null)
     }
 
