@@ -5,6 +5,11 @@ import com.select.dao.CourseRecordDAO
 import com.select.bean.CourseRecord
 
 class CourseRecordDAOImpl : BaseDao(), CourseRecordDAO {
+    override fun queryCourseRecordByCourseIdAndAccountId(courseId: Int, accountId: Int): CourseRecord? {
+        val sql = "select id,course_id,account_id from course_record where course_id = ? and account_id = ?"
+        return queryForOne(CourseRecord::class.java, sql, courseId, accountId)
+    }
+
     override fun queryCourseRecordByCourseId(courseId: Int): List<CourseRecord?>? {
         val sql = "select id,course_id,account_id from course_record where course_id = ?"
         return queryForList(CourseRecord::class.java, sql, courseId)

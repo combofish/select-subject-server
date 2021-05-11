@@ -11,15 +11,22 @@ import java.io.IOException
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import com.select.bean.Course
+import com.select.service.AccountService
+import com.select.service.impl.AccountServiceImpl
 import java.io.PrintWriter
 
-@WebServlet(name = "GetAllCouresServlet", value = ["/GetAllCouresServlet"])
+@WebServlet(name = "GetAllCoursesServlet", value = ["/GetAllCoursesServlet"])
 class GetAllCoursesServlet : HttpServlet() {
     private val courseService: CourseService = CourseServiceImpl()
+    private val accountService:AccountService = AccountServiceImpl()
     private val gson = Gson()
     @Throws(ServletException::class, IOException::class)
     override fun doGet(request: HttpServletRequest, response: HttpServletResponse) {
-        val allCourses = courseService.allCourses
+        val allCourses = courseService.allCourses as MutableList<Course>
+        for (course in allCourses){
+            val queryAccountById = accountService.queryAccountById(course.account_id)
+            course.account_name = queryAccountById?.name.toString()
+        }
         val json = gson.toJson(allCourses)
         println(json)
         response.characterEncoding = "UTF-8"
