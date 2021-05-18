@@ -1,0 +1,4 @@
+passport,name,password,status,email,phone,sex,department,major,description
+172068,赵同学,172068,0,combofish@139.com,18233092052,1,电子信息工程学院,电子科学与技术,开发者
+172069,王同学,172068,0,lijuan@hebut.edu.cn,18233092011,0,电子信息工程学院,电子科学与技术,测试学生账户
+172070,魏同学,172070,0,yuqing@hebut.edu.cn,18233092099,0,电子信息工程学院,通信工程,测试其他专业学生账户
