@@ -18,7 +18,7 @@ class CsvDataImportTest : TestCase(){
      * 从文件中导入学生数据
      */
     fun testImportStudent(){
-        var path = "/home/larry/GitProjects/select-subject-server/data-student.txt"
+        var path = "/home/larry/GitProjects/select-subject-server/data-student.csv"
         var students = csvDataImport.importAccounts(path)
         //println(students.toString())
 
@@ -32,7 +32,7 @@ class CsvDataImportTest : TestCase(){
      * 从文件中导入老师数据
      */
     fun testImportTeacher(){
-        var path = "/home/larry/GitProjects/select-subject-server/data-teacher.txt"
+        var path = "/home/larry/GitProjects/select-subject-server/data-teacher.csv"
         var teachers = csvDataImport.importAccounts(path)
         println(teachers.toString())
 
@@ -46,7 +46,7 @@ class CsvDataImportTest : TestCase(){
      * 从文件中导入课程数据
      */
     fun testImportCourse(){
-        var path = "/home/larry/GitProjects/select-subject-server/data-course.txt"
+        var path = "/home/larry/GitProjects/select-subject-server/data-course.csv"
         var courses = csvDataImport.importCourses(path)
         // println(courses.toString())
         for (course in courses){
