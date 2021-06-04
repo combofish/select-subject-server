@@ -12,13 +12,13 @@
 <h1>数据导入</h1>
 <div class="divForm">
     <form method="post" action="/SelectSubject2_war_exploded/ImportTeachersServlet" enctype="multipart/form-data">
-        选择要导入的学生文件:
+        选择要导入的老师文件:
         <input type="file" name="uploadFile"/>
         <input type="submit" value="上传"/>
     </form>
     <br/>
     <form method="post" action="/SelectSubject2_war_exploded/ImportStudentsServlet" enctype="multipart/form-data">
-        选择要导入的老师文件:
+        选择要导入的学生文件:
         <input type="file" name="uploadFile"/>
         <input type="submit" value="上传"/>
     </form>

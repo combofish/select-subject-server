@@ -16,7 +16,7 @@ class CourseServiceImpl : CourseService {
     }
 
     override fun afterCancelSelectedUpdateCourseAvailableNumber(courseId: Int): Boolean {
-        if (!isCourseAvailable(courseId)) return false
+        // if (!isCourseAvailable(courseId)) return false
         val course = courseDAO.queryCourseByCourseId(courseId)
         println("In afterCancelSelectedUpdateCourseAvailableNumber : ${course}")
 
